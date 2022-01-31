@@ -1,0 +1,13 @@
+package com.gcu.business;
+
+import java.util.List;
+
+import com.gcu.model.PostModel;
+import com.gcu.model.UserModel;
+
+public interface IUserBusinessService 
+{
+	public int createUser(UserModel newUser);
+	public List<UserModel> getUsers();
+	public List<UserModel> searchUsers(String searchTerm);
+}
