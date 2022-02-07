@@ -72,13 +72,13 @@ span.psw {
 <body>
 	<div layout:fragment="content">
 		<form action="#" th:action="@{/post/searchResults}" th:object="${searchPostModel}" method="post">
-			<div class="container"> `
+			<div class="container">
 				<label for="searchTerm"><b>Search for</b></label> 
 				<input type="text" th:field="*{searchTerm}" placeholder="Enter a search term" name="searchTerm" required>
 				<div class="fieldError">
 					<p th:if="${#fields.hasErrors('searchTerm')}" th:errors="*{searchTerm}">Search Term Error</p>
 				</div> 
-				<button type="submit">Search</button>
+				<button type="submit" class="btn btn-outline-success">Search</button>
 			</div>
 			<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
 			<div th:each="err : ${#fields.errors('*')}">

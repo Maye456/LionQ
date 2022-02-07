@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    font-family: Arial;
+}
+
+h2 {
+    color: blue;
+}
+
+p {
+    font-style: italic;
+}
+
+/*table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 2px;
+}*/
+
+ul.nav {
+  padding-left: 0px;
+  /* background-color: #3D99CE; */
+  text-align: center;
+}
+
+ul.nav > li {
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+ul.nav > li > a {
+  color: black;
+  text-decoration: none;
+}
+
+.button {
+	background-color: #95C8D8;
+    border: none;
+    color: white;
+    padding: 6px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+    <div layout:fragment="content" class="container-xl">
+        <h1 th:text="${title}"></h1>
+        <table class="table table-hover">
+            <tr class="table-primary">
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.role}"></td>
+                <td>
+                	<form action="#" th:action="@{/user/delete}" th:object="${user}" method="post"> 
+						<input name="id" type="hidden" th:value="${user.id}"> 
+						<input name="firstName" type="hidden" th:value="${user.firstName}"> 
+						<input name="lastName" type="hidden" th:value="${user.lastName}">
+						<input name="email" type="hidden" th:value="${user.email}">
+						<input name="username" type="hidden" th:value="${user.username}">
+						<input name="password" type="hidden" th:value="${user.password}">
+						<input name="role" type="hidden" th:value="${user.role}">
+						<button type="submit" class="btn btn-outline-danger">Delete</button>
+					</form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
