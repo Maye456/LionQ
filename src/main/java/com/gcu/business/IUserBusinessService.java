@@ -10,4 +10,5 @@ public interface IUserBusinessService
 	public int createUser(UserModel newUser);
 	public List<UserModel> getUsers();
 	public List<UserModel> searchUsers(String searchTerm);
+	public boolean deleteOne(long id);
 }

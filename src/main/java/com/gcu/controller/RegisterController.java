@@ -71,42 +71,4 @@ public class RegisterController
 		model.addAttribute("userModel", newUser);
 		return "registerSuccess";
 	}
-	
-	// Admin Page for all Users
-	@GetMapping("/admin") 
-	public String showUsersForAdmin(Model model)
-	{  
-		List<UserModel> users = service.getUsers();
-        model.addAttribute("title", "Admin Page");
-        model.addAttribute("searchModel", new SearchUserModel());
-        model.addAttribute("users", users);
-        return "userAdmin";
-	}
-	
-	@GetMapping("/searchUserForm")
-	public String displaySearchForm(Model model)
-	{
-		// Display Search Form View
-		model.addAttribute("title", "Search For Users");
-		model.addAttribute("searchUserModel", new SearchUserModel());
-		return "userSearchForm";
-	}
-	
-	@PostMapping("/searchResults")
-	public String showAllPosts(@Valid SearchUserModel searchModel, BindingResult bindingResult, Model model)
-	{
-		System.out.println("Performing search results for " + searchModel.getSearchTerm2());
-		
-		// Check for validation errors
-		if (bindingResult.hasErrors())
-		{
-			model.addAttribute("title", "Search For Users");
-			return "userSearchForm";
-		}
-		List<UserModel> users = service.searchUsers(searchModel.getSearchTerm2());
-		model.addAttribute("title", "Search For Users");
-		model.addAttribute("searchPostModel", searchModel);
-		model.addAttribute("users", users);
-		return "users";
-	}
 }

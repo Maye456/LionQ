@@ -53,10 +53,10 @@ public class PostDataService implements IPostDataAccess<PostModel>
 	public int addOne(PostModel newPost)
 	{
 		return jdbcTemplate.update(
-				"INSERT INTO post (title, content, post_userId) VALUES (?, ?, ?)",
+				"INSERT INTO post (title, content, user_id) VALUES (?, ?, ?)",
 				newPost.getTitle(),
 				newPost.getContent(),
-				newPost.getPost_userId());
+				newPost.getUser_id());
 	}
 
 	@Override

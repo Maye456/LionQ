@@ -29,7 +29,7 @@ public class PostBusinessService implements IPostBusinessService
 				result.getContent(),
 				result.getTime_posted(),
 				result.getTime_updated(),
-				result.getPost_userId()
+				result.getUser_id()
 				);
 		return post;
 	}
@@ -51,8 +51,9 @@ public class PostBusinessService implements IPostBusinessService
 					entity.getContent(),
 					entity.getTime_posted(),
 					entity.getTime_updated(),
-					entity.getPost_userId());
-			post.setUser(userService.getCurrentUser());
+					entity.getUser_id());
+			
+			post.setUser(userService.getUser((int) post.getUser_id()));
 			System.out.println(post.getUser().getUsername());
 			posts.add(post);	
 		}
@@ -73,8 +74,8 @@ public class PostBusinessService implements IPostBusinessService
 					entity.getContent(),
 					entity.getTime_posted(),
 					entity.getTime_updated(),
-					entity.getPost_userId());
-			post.setUser(userService.getCurrentUser());
+					entity.getUser_id());
+			post.setUser(userService.getUser((int) post.getUser_id()));
 			System.out.println(post.getUser().getUsername());
 			posts.add(post);	
 		}
@@ -107,7 +108,7 @@ public class PostBusinessService implements IPostBusinessService
 				updatePost.getContent(),
 				updatePost.getTime_posted(),
 				updatePost.getTime_updated(),
-				updatePost.getPost_userId()
+				updatePost.getUser_id()
                 );
 		PostEntity result = service.updateOne(idToUpdate, entity);
         
@@ -117,7 +118,7 @@ public class PostBusinessService implements IPostBusinessService
 				result.getContent(),
 				result.getTime_posted(),
 				result.getTime_updated(),
-				result.getPost_userId()
+				result.getUser_id()
                 );
         return updated;
 	}

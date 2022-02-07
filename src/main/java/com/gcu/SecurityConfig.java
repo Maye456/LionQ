@@ -45,6 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .defaultSuccessUrl("/post/all", true)
             .and()
         .authorizeRequests()
+		// Put most restricted pages first. Only ADMIN can delete or edit orders
+			//.antMatchers("/user/admin").hasRole("ADMIN")
+			//.antMatchers("/orders/addNewForm").hasAnyRole("ADMIN", "MANAGER")
             .antMatchers(
                 "/",
                 "/index",
@@ -52,9 +55,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 "/assets/**",
                 "displayOauthCode",
                 "/register/",
+                "/register/**",
                 "/login/",
                 "/login/**",
-                "/img/**"
+                "/img/**",
+                "/#"
             ).permitAll()
             .anyRequest().authenticated()
             .and()

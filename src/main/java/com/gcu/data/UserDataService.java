@@ -68,11 +68,23 @@ public class UserDataService implements IUserDataAccess<UserModel>
 				new UserMapper(),
 				new Object[] {"%" + searchTerm + "%"});
 	}
-	
-//	@Override
-//	public UserModel findByEmail(String email) 
-//	{
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
+	@Override
+	public boolean deleteOne(long id)
+	{
+		int updateResult = jdbcTemplate.update(
+				"DELETE FROM user WHERE id = ?",
+				new Object[] {id});
+		return (updateResult > 0);
+	}
+
+	@Override
+	public UserModel getByID(int Id)
+	{
+		UserModel result = jdbcTemplate.queryForObject(
+				"SELECT * FROM user WHERE Id = ?",
+				new UserMapper(),
+				new Object[] {Id});
+		return result;
+	}
 }

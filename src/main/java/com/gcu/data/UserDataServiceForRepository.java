@@ -81,4 +81,17 @@ public class UserDataServiceForRepository implements IUserDataAccess<UserEntity>
 		List<UserEntity> result = userRepository.findByUsernameContainingIgnoreCase(searchTerm);
 		return result;
 	}
+
+	@Override
+	public boolean deleteOne(long id)
+	{
+		userRepository.deleteById(id);
+		return true;
+	}
+
+	@Override
+	public UserEntity getByID(int Id)
+	{
+		return userRepository.findById((long) Id).orElse(null);
+	}
 }

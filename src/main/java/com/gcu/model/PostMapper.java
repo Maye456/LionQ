@@ -27,7 +27,7 @@ public class PostMapper implements RowMapper<PostModel>
 				rs.getString("content"),
 				rs.getDate("time_posted"),
 				rs.getDate("time_updated"),
-				rs.getInt("post_userId")
+				rs.getInt("user_id")
 				);
 		return post;
 	}

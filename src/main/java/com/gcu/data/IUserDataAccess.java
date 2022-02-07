@@ -8,4 +8,6 @@ public interface IUserDataAccess<T>
 	public T findByUsername(String username);
 	public List<T> getUsers();
 	public List<T> searchUsers(String searchTerm);
+	public boolean deleteOne(long id);
+	public T getByID(int Id);
 }

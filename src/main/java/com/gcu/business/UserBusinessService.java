@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.gcu.data.UserDataServiceForRepository;
 import com.gcu.model.UserModel;
+import com.gcu.model.PostEntity;
 import com.gcu.model.PostModel;
 import com.gcu.model.UserEntity;
 
@@ -74,5 +75,20 @@ public class UserBusinessService implements UserDetailsService
 	{
 		System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
 		return new UserModel(service.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
+	}
+	
+	public UserModel getUser(int Id)
+	{
+		UserEntity result = service.getByID(Id);
+		UserModel user = new UserModel(
+				result.getId(),
+				result.getFirstName(),
+				result.getLastName(),
+				result.getEmail(),
+				result.getUsername(),
+				result.getPassword(),
+				result.getRole()
+				);
+		return user;
 	}
 }

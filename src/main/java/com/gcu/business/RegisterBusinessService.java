@@ -77,5 +77,11 @@ public class RegisterBusinessService implements IUserBusinessService
                     );
         }
         return users;
+	}
+
+	@Override
+	public boolean deleteOne(long id)
+	{
+		return service.deleteOne(id);
 	}	
 }

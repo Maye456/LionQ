@@ -22,22 +22,23 @@ public class PostModel
 	@NotNull
 	private Date time_posted = Date.from(Instant.now());
 	
-	private Date time_updated;
+	@NotNull
+	private Date time_updated = Date.from(Instant.now());
 	
 	@NotNull
-	private long post_userId;
+	private long user_id;
 	
 	public UserModel user;
 	
 	public PostModel(long post_id, @NotBlank(message="This is a required field") @Size(max = 250) String title, @NotBlank(message="This is a required field") @Size(max = 800) String content,
-			@NotNull Date time_posted, Date time_updated, @NotNull long post_userId)
+			@NotNull Date time_posted, Date time_updated, @NotNull long user_id)
 	{
 		this.post_id = post_id;
 		this.title = title;
 		this.content = content;
 		this.time_posted = time_posted;
 		this.time_updated = time_updated;
-		this.post_userId = post_userId;
+		this.user_id = user_id;
 	}
 
 	public PostModel(long post_id, @NotBlank(message="This is a required field") @Size(max = 250) String title, @NotBlank(message="This is a required field") @Size(max = 800) String content)
@@ -110,14 +111,14 @@ public class PostModel
 		this.time_updated = time_updated;
 	}
 
-	public long getPost_userId()
+	public long getUser_id()
 	{
-		return post_userId;
+		return user_id;
 	}
 
-	public void setPost_userId(long post_userId)
+	public void setUser_id(long user_id)
 	{
-		this.post_userId = post_userId;
+		this.user_id = user_id;
 	}
 
 	public UserModel getUser()

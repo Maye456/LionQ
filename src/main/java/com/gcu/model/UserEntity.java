@@ -28,9 +28,6 @@ public class UserEntity
 	
 	@Column("Role")
 	String role;
-	
-	@Column("Enabled")
-	private boolean enabled;
 
 	public UserEntity(long id, String firstName, String lastName, String email, String username, String password, String role) {
 		this.id = id;

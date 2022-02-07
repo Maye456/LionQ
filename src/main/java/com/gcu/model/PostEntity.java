@@ -24,20 +24,19 @@ public class PostEntity
 	Date time_posted = Date.from(Instant.now());
 	
 	@Column("time_updated")
-	Date time_updated;
+	Date time_updated = Date.from(Instant.now());
 	
-	@Column("post_userId")
-	long post_userId;
+	@Column("user_Id")
+	long user_id;
 
-	public PostEntity(long post_id, String title, String content, Date time_posted, Date time_updated, long post_userId)
+	public PostEntity(long post_id, String title, String content, Date time_posted, Date time_updated, long user_id)
 	{
-		super();
 		this.post_id = post_id;
 		this.title = title;
 		this.content = content;
 		this.time_posted = time_posted;
 		this.time_updated = time_updated;
-		this.post_userId = post_userId;
+		this.user_id = user_id;
 	}
 
 	public PostEntity(long post_id, String title, String content)
@@ -56,7 +55,7 @@ public class PostEntity
 	}
 	
 	public PostEntity() {}
-	
+
 	public long getPost_id()
 	{
 		return post_id;
@@ -107,13 +106,13 @@ public class PostEntity
 		this.time_updated = time_updated;
 	}
 
-	public long getPost_userId()
+	public long getUser_id()
 	{
-		return post_userId;
+		return user_id;
 	}
 
-	public void setPost_userId(long post_userId)
+	public void setUser_id(long user_id)
 	{
-		this.post_userId = post_userId;
+		this.user_id = user_id;
 	}
 }
