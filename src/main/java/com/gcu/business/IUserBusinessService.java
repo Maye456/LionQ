@@ -11,4 +11,6 @@ public interface IUserBusinessService
 	public List<UserModel> getUsers();
 	public List<UserModel> searchUsers(String searchTerm);
 	public boolean deleteOne(long id);
+	public UserModel updateOne(long idToUpdate, UserModel updateUser);
+	public UserModel getById(int Id);
 }

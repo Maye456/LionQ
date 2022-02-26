@@ -10,4 +10,5 @@ public interface IUserDataAccess<T>
 	public List<T> searchUsers(String searchTerm);
 	public boolean deleteOne(long id);
 	public T getByID(int Id);
+	public T updateOne(long idToUpdate, T updateUser);
 }

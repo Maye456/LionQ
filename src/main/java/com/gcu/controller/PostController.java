@@ -97,7 +97,7 @@ public class PostController
 		return "posts";
 	}
 	
-	@PostMapping("/editForm") 
+	@GetMapping("/editForm") 
 	public String displayEditForm(PostModel postModel, Model model)
 	{
 		// Display new order form

@@ -92,6 +92,14 @@ public class UserDataServiceForRepository implements IUserDataAccess<UserEntity>
 	@Override
 	public UserEntity getByID(int Id)
 	{
+		System.out.println(userRepository.findById((long) Id));
 		return userRepository.findById((long) Id).orElse(null);
+	}
+
+	@Override
+	public UserEntity updateOne(long idToUpdate, UserEntity updateUser)
+	{
+		UserEntity result = userRepository.save(updateUser);
+		return result;
 	}
 }

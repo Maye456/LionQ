@@ -73,7 +73,7 @@ public class UserDataService implements IUserDataAccess<UserModel>
 	public boolean deleteOne(long id)
 	{
 		int updateResult = jdbcTemplate.update(
-				"DELETE FROM user WHERE id = ?",
+				"DELETE FROM user WHERE user_Id = ?",
 				new Object[] {id});
 		return (updateResult > 0);
 	}
@@ -82,9 +82,31 @@ public class UserDataService implements IUserDataAccess<UserModel>
 	public UserModel getByID(int Id)
 	{
 		UserModel result = jdbcTemplate.queryForObject(
-				"SELECT * FROM user WHERE Id = ?",
+				"SELECT * FROM user WHERE user_Id = ?",
 				new UserMapper(),
 				new Object[] {Id});
 		return result;
+	}
+
+	@Override
+	public UserModel updateOne(long idToUpdate, UserModel updateUser)
+	{
+		int result = jdbcTemplate.update(
+				"UPDATE user SET Firstname = ?, Lastname = ?, Email = ?, Username = ?, Password = ?, Role = ? WHERE user_Id = ?",
+				updateUser.getFirstName(),
+				updateUser.getLastName(),
+				updateUser.getEmail(),
+				updateUser.getUsername(),
+				updateUser.getPassword(),
+				updateUser.getRole(),
+				idToUpdate);
+		if (result > 0)
+		{
+			return updateUser;
+		}
+		else
+		{
+			return null;
+		}
 	}
 }

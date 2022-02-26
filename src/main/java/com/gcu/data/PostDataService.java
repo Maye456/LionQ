@@ -7,11 +7,15 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.gcu.model.PostEntity;
 import com.gcu.model.PostMapper;
 import com.gcu.model.PostModel;
 
 public class PostDataService implements IPostDataAccess<PostModel>
 {
+	@Autowired
+	private PostRepository postRepository;
+	
 	@Autowired
 	DataSource dataSource;
 	JdbcTemplate jdbcTemplate;
@@ -53,7 +57,7 @@ public class PostDataService implements IPostDataAccess<PostModel>
 	public int addOne(PostModel newPost)
 	{
 		return jdbcTemplate.update(
-				"INSERT INTO post (title, content, user_id) VALUES (?, ?, ?)",
+				"INSERT INTO post (title, content, user_Id) VALUES (?, ?, ?)",
 				newPost.getTitle(),
 				newPost.getContent(),
 				newPost.getUser_id());
@@ -84,5 +88,14 @@ public class PostDataService implements IPostDataAccess<PostModel>
 		{
 			return null;
 		}
+	}
+
+	@Override
+	public List<PostModel> getAllPostsByUser(long id)
+	{
+		return jdbcTemplate.query(
+				"SELECT * FROM post where user_Id = ?",
+				new PostMapper(),
+				new Object[] {id});
 	}
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    font-family: Arial;
+}
+
+h2 {
+    color: blue;
+}
+
+
+/*p {
+    font-style: italic;
+    color: black;
+}*/
+
+ul.nav {
+  padding-left: 0px;
+  /* background-color: #3D99CE; */
+  text-align: center;
+}
+
+ul.nav > li {
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+ul.nav > li > a {
+  color: black;
+  text-decoration: none;
+}
+
+.button {
+	background-color: #95C8D8;
+    border: none;
+    color: white;
+    padding: 6px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+    <div layout:fragment="content" class="container-xl">
+        <h1 th:text="${title}"></h1>
+        <br>
+        <div class="row">
+  			<div class="col-sm-6">
+		        <div align="left">
+			        <div class="card border-dark mb-3" style="max-width: 20rem;" th:object="${userModel}">
+						<div class="card-header" th:text="${userModel.username}">Header</div>
+							<input type="hidden" th:field="${userModel.id}" name="id">
+					    	<div class="card-body">
+					    		<h5 class="card-title" th:text="${userModel.firstName}">Dark card title</h5>
+					    		<h5 class="card-title" th:text="${userModel.lastName}">Dark card title</h5>
+					    		<h5 class="card-title" th:text="${userModel.email}">Dark card title</h5>
+					    	</div>
+					</div>
+					
+			        <button type="button" class="btn btn-outline-primary" onclick="window.location.href='/user/editUser';">Edit Account</button>
+			        <br> <br>
+				</div>
+			</div>
+			
+			<div class="col-sm-6">
+				<!-- INSERT POSTS SPECIFIC TO USER -->
+				<div align="left">
+					<h4> Timeline of Posts </h4>
+			        <div class="card border-dark mb-3" style="max-width: 20rem;" th:each="post : ${posts}">
+						<div class="card-header" th:text="${post.title}">Header</div>
+							<input type="hidden" th:field="${userModel.id}" name="id">
+					    	<div class="card-body">
+					    		<h5 class="card-title" th:text="${post.content}">Dark card title</h5>
+					    		<h5 class="card-title" th:text="${post.time_posted}">Dark card title</h5>
+					    		<button type="button" class="btn btn-outline-info" onclick="window.location.href='/post/editForm';">Edit</button>
+					    		<button type="button" class="btn btn-outline-danger" onclick="window.location.href='/post/delete';">Delete</button>
+					    	</div>
+					</div>
+				</div>
+			</div>
+    </div>
+</body>
+</html>

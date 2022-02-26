@@ -29,7 +29,7 @@ public class PostBusinessService implements IPostBusinessService
 				result.getContent(),
 				result.getTime_posted(),
 				result.getTime_updated(),
-				result.getUser_id()
+				result.getUserid()
 				);
 		return post;
 	}
@@ -51,10 +51,10 @@ public class PostBusinessService implements IPostBusinessService
 					entity.getContent(),
 					entity.getTime_posted(),
 					entity.getTime_updated(),
-					entity.getUser_id());
+					entity.getUserid());
 			
 			post.setUser(userService.getUser((int) post.getUser_id()));
-			System.out.println(post.getUser().getUsername());
+			// System.out.println(post.getUser().getUsername());
 			posts.add(post);	
 		}
 		return posts;
@@ -74,9 +74,9 @@ public class PostBusinessService implements IPostBusinessService
 					entity.getContent(),
 					entity.getTime_posted(),
 					entity.getTime_updated(),
-					entity.getUser_id());
+					entity.getUserid());
 			post.setUser(userService.getUser((int) post.getUser_id()));
-			System.out.println(post.getUser().getUsername());
+			// System.out.println(post.getUser().getUsername());
 			posts.add(post);	
 		}
 		return posts;
@@ -85,11 +85,16 @@ public class PostBusinessService implements IPostBusinessService
 	@Override
 	public int addOne(PostModel newPost)
 	{
+		System.out.println("GET USER::: " + userService.getCurrentUser().getId());
+		
 		PostEntity entity = new PostEntity(
 				newPost.getPost_id(),
 				newPost.getTitle(),
-				newPost.getContent()
+				newPost.getContent(),
+				newPost.getUser_id()
 				);
+		entity.setUserid(userService.getCurrentUser().getId());
+		
 		return service.addOne(entity);
 	}
 
@@ -110,6 +115,10 @@ public class PostBusinessService implements IPostBusinessService
 				updatePost.getTime_updated(),
 				updatePost.getUser_id()
                 );
+		entity.setUserid(userService.getCurrentUser().getId());
+		
+		System.out.println("=======entity========" + entity.getUserid());
+		
 		PostEntity result = service.updateOne(idToUpdate, entity);
         
         PostModel updated = new PostModel(
@@ -118,8 +127,32 @@ public class PostBusinessService implements IPostBusinessService
 				result.getContent(),
 				result.getTime_posted(),
 				result.getTime_updated(),
-				result.getUser_id()
+				result.getUserid()
                 );
+        updated.setUser_id(userService.getCurrentUser().getId());
+        System.out.println("=======updated========" + updated.getUser_id());
         return updated;
+	}
+
+	@Override
+	public List<PostModel> getAllPostsByUser(long id)
+	{
+		List<PostEntity> postsE = service.getAllPostsByUser(userService.getCurrentUser().getId());
+        List<PostModel> posts = new ArrayList<PostModel>();
+        for (PostEntity entity: postsE)
+		{
+			// Translate from Entity to Post Model
+			PostModel post = new PostModel(
+					entity.getPost_id(),
+					entity.getTitle(),
+					entity.getContent(),
+					entity.getTime_posted(),
+					entity.getTime_updated(),
+					entity.getUserid());
+			post.setUser(userService.getUser((int) post.getUser_id()));
+			System.out.println(post.getUser().getUsername());
+			posts.add(post);	
+		}
+		return posts;
 	}
 }

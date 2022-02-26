@@ -1,6 +1,7 @@
 package com.gcu.data;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.sql.DataSource;
 
@@ -9,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.gcu.model.PostEntity;
+import com.gcu.model.UserModel;
 
 @Service
 public class PostDataServiceForRepository implements IPostDataAccess<PostEntity>
@@ -63,13 +65,22 @@ public class PostDataServiceForRepository implements IPostDataAccess<PostEntity>
 	public boolean deleteOne(long id)
 	{
 		postRepository.deleteById(id);
-		return true;
+		return true;  
 	}
 
 	@Override
 	public PostEntity updateOne(long idToUpdate, PostEntity updatePost)
 	{
+		System.out.println("=====PostDataServiceForRepository====== {" + updatePost.getUserid() + "}");
+		
 		PostEntity result = postRepository.save(updatePost);
 		return result;
+	}
+
+	@Override
+	public List<PostEntity> getAllPostsByUser(long id)
+	{
+		List<PostEntity> posts = postRepository.findAllByUserid(id);
+		return posts;
 	}
 }

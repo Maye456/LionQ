@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gcu.business.IPostBusinessService;
 import com.gcu.business.IUserBusinessService;
+import com.gcu.business.UserBusinessService;
 import com.gcu.data.UserDataServiceForRepository;
 import com.gcu.model.PostModel;
 import com.gcu.model.SearchPostModel;
@@ -27,7 +29,13 @@ public class UserController
 	@Autowired
 	IUserBusinessService service;
 	
+	@Autowired
+	IPostBusinessService postService;
+	
 	private UserDataServiceForRepository userService;
+	
+	@Autowired
+	UserBusinessService service2;
 	
 	@Autowired
 	public UserController(UserDataServiceForRepository userService)
@@ -73,7 +81,7 @@ public class UserController
 		return "users";
 	}
 	
-	// Process request for the delete post
+	// Process request for the delete user
 	@PostMapping("/delete")
 	public String deleteUser(@Valid UserModel user, BindingResult bindingResult, Model model)
 	{
@@ -84,5 +92,41 @@ public class UserController
 		model.addAttribute("users", users);
 		model.addAttribute("searchModel", new SearchUserModel());
 		return "userAdmin";
+	}
+	
+	// Show Account Info
+	@GetMapping("/account") 
+	public String showAccountPage(Model model)
+	{  
+		UserModel user = service2.getCurrentUser();
+		
+		List<PostModel> posts = postService.getAllPostsByUser(user.getId());
+		model.addAttribute("posts", posts);
+		
+        model.addAttribute("title", "Account Page");
+        model.addAttribute("userModel", user);
+        return "accountPage";
+	}
+	
+	// Display Edit Form
+	@GetMapping("/editUser") 
+	public String displayEditForm(Model model)
+	{
+		UserModel user = service2.getCurrentUser();
+		
+		model.addAttribute("title", "Edit Account");
+		model.addAttribute("userModel", user);
+		return "userEdit";
+	}
+	
+	@PostMapping("/doUpdate") 
+	public String updatePost(@Valid UserModel user, BindingResult bindingResult, Model model)
+	{
+		// Update User
+		service.updateOne(user.getId(), user);
+		
+		model.addAttribute("title", "Account Page");
+		model.addAttribute("searchModel", new SearchUserModel());
+		return "accountPage";
 	}
 }

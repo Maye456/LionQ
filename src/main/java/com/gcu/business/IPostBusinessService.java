@@ -12,4 +12,5 @@ public interface IPostBusinessService
 	public int addOne(PostModel newPost);
 	public boolean deleteOne(long id);
 	public PostModel updateOne(long idToUpdate, PostModel updatePost);
+	public List<PostModel> getAllPostsByUser(long id);
 }

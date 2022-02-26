@@ -1,4 +1,4 @@
-package com.gcu.business;
+ package com.gcu.business;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import com.gcu.model.UserEntity;
 public class RegisterBusinessService implements IUserBusinessService
 {
 	@Autowired
-	private UserDataServiceForRepository service;
+	private UserDataServiceForRepository service; 
 
 	@Override
 	public int createUser(UserModel newUser) 
@@ -83,5 +83,47 @@ public class RegisterBusinessService implements IUserBusinessService
 	public boolean deleteOne(long id)
 	{
 		return service.deleteOne(id);
+	}
+
+	@Override
+	public UserModel updateOne(long idToUpdate, UserModel updateUser)
+	{
+		UserEntity entity = new UserEntity(
+				updateUser.getId(),
+				updateUser.getFirstName(),
+				updateUser.getLastName(),
+				updateUser.getEmail(),
+				updateUser.getUsername(),
+				updateUser.getPassword(),
+				updateUser.getRole()
+                );
+		UserEntity result = service.updateOne(idToUpdate, entity);
+        
+        UserModel updated = new UserModel(
+        		result.getId(),
+        		result.getFirstName(),
+        		result.getLastName(),
+        		result.getEmail(),
+        		result.getUsername(),
+        		result.getPassword(),
+        		result.getRole()
+                );
+        return updated;
+	}
+
+	@Override
+	public UserModel getById(int Id)
+	{		
+		UserEntity result = service.getByID(Id);
+		UserModel user = new UserModel(
+				result.getId(),
+        		result.getFirstName(),
+        		result.getLastName(),
+        		result.getEmail(),
+        		result.getUsername(),
+        		result.getPassword(),
+        		result.getRole()
+				);
+		return user;
 	}	
 }

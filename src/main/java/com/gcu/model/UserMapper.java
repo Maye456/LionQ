@@ -12,7 +12,7 @@ public class UserMapper implements RowMapper<UserModel>
 	Class			Table
 	Properties		Column Names
 	========================
-	id				Id
+	id				user_Id
 	firstName		FirstName
 	lastName		LastName
 	email			Email
@@ -24,7 +24,7 @@ public class UserMapper implements RowMapper<UserModel>
 	public UserModel mapRow(ResultSet resultSet, int i) throws SQLException
 	{
 		UserModel user = new UserModel(
-				resultSet.getLong("Id"),
+				resultSet.getLong("user_Id"),
 				resultSet.getString("FirstName"),
 				resultSet.getString("LastName"),
 				resultSet.getString("Email"),

@@ -24,6 +24,8 @@ public class UserBusinessService implements UserDetailsService
 
 	@Autowired
 	private UserDataServiceForRepository service;
+	
+	public UserBusinessService() {}
 
 	public UserBusinessService(UserDataServiceForRepository service)
 	{

@@ -2,6 +2,8 @@ package com.gcu.data;
 
 import java.util.List;
 
+import com.gcu.model.UserModel;
+
 public interface IPostDataAccess<T>
 {
 	public T getByID(int Id);
@@ -10,4 +12,5 @@ public interface IPostDataAccess<T>
 	public int addOne(T newPost);
 	public boolean deleteOne(long id);
 	public T updateOne(long idToUpdate, T updatePost);
+	public List<T> getAllPostsByUser(long id);
 }
