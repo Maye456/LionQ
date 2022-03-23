@@ -73,7 +73,7 @@ span.psw {
 	<div layout:fragment="content">
 		<form action="#" th:action="@{/post/searchResults}" th:object="${searchPostModel}" method="post">
 			<div class="container">
-				<label for="searchTerm"><b>Search for</b></label> 
+				<label for="searchTerm"><b>Search For Posts Here</b></label> 
 				<input type="text" th:field="*{searchTerm}" placeholder="Enter a search term" name="searchTerm" required>
 				<div class="fieldError">
 					<p th:if="${#fields.hasErrors('searchTerm')}" th:errors="*{searchTerm}">Search Term Error</p>

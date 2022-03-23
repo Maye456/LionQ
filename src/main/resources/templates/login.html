@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
 <head>
+	<script type="text/javascript" src="index.js"></script>
+
 <style>
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -71,7 +73,8 @@ span.psw {
 
 <body>
 <div layout:fragment="content">
-	<form action="#" th:action="@{/login/}" th:object="${userModel}" method="post">
+	 <!--onsubmit="return validateForm()"-->
+	<form action="#" th:action="@{/login/}" th:object="${userModel}" method="post" onsubmit="return validateForm()">
 		<div class="imgcontainer">
 			<img th:src="@{/img/lionqlogo.png}" alt="LionQ Logo" class="avatar"/>
 		</div>

@@ -35,8 +35,6 @@ public class UserBusinessService implements UserDetailsService
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
 	{
-		System.out.println("User Business Service is searching for " + username);
-		
 		// Try to find the User in the database
 		UserEntity user = service.findByUsername(username);
 		
@@ -46,25 +44,6 @@ public class UserBusinessService implements UserDetailsService
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("USER"));
             return new User(user.getUsername(), user.getPassword(), authorities);
-            
-//			System.out.println(user.getUsername());
-//			
-//			// Add authorities associated with user
-//			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-//			System.out.println("Role ============ " + user.getRole());
-//			authorities.add(new SimpleGrantedAuthority(user.getRole()));
-//			
-//			// Admin allowed to access all pages
-//			if (user.getRole().equals("ADMIN"))
-//			{
-//				authorities.add(new SimpleGrantedAuthority("USER"));
-//			}
-//			
-//			// Test to make sure it works
-//			System.out.println("Authorities ======= " + authorities.get(0) + " " + authorities);
-//			User newUser = new User(user.getUsername(), user.getPassword(), authorities);
-//			System.out.println("The user created w/ UserDetails service in BS " + newUser);
-//			return newUser;
 		}
 		else
 		{
@@ -75,7 +54,6 @@ public class UserBusinessService implements UserDetailsService
 	
 	public UserModel getCurrentUser()
 	{
-		System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
 		return new UserModel(service.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
 	}
 	

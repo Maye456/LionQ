@@ -11,6 +11,4 @@ public interface PostRepository extends CrudRepository<PostEntity, Long>
 	List<PostEntity> findByTitleContainingIgnoreCase(String searchTerm);
 
 	List<PostEntity> findAllByUserid(long user_id);
-
-	// List<PostEntity> findByUser(long id);
 }

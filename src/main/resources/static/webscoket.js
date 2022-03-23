@@ -4,7 +4,7 @@ let selectedUserOrGrup="10000000000000000";
 let newMessages = new Map();
 
 
-function connectToChat(userName) {
+function connectToChat(username) {
     console.log("connecting to chat...")
     let socket = new SockJS(url + '/ws');
     // let socket=new WebSocket("wss://localhost:8080/ws")
@@ -13,7 +13,7 @@ function connectToChat(userName) {
         console.log("connected to: " + frame);
 
 
-        stompClient.subscribe("/topic/messages/"+userName, function (response) {
+        stompClient.subscribe("/topic/messages/"+username, function (response) {
             let data = JSON.parse(response.body);
             // console.log("selectedUserOrGrup = "+selectedUserOrGrup)
             // console.log("data.fromLogin = "+data.fromLogin)
@@ -43,7 +43,7 @@ function connectToChat(userName) {
         },{});
 
 
-        $.get(url + "/fetchAllGroups/"+userName, function (response) {
+        $.get(url + "/fetchAllGroups/"+username, function (response) {
             let groups = response;
             for (let i = 0; i < groups.length; i++) {
                 // console.log(groups[i]['name'])
@@ -90,19 +90,19 @@ function onError() {
 
 window.onload = function() {
 
-    if (localStorage.getItem("userId") === null) {
-        window.location.href = "index.html";
+    if (localStorage.getItem("id") === null) {
+        window.location.href = "index2.html";
         return false;
     }
 
     fetchAll();
-    connectToChat(localStorage.getItem("userId"));
+    connectToChat(localStorage.getItem("id"));
 
   };
 
 function fetchAll() {
 
-    var userId = localStorage.getItem("userId");
+    var userId = localStorage.getItem("id");
 
     console.log(userId);
     $.get(url + "/fetchAllUsers/"+userId, function (response) {
@@ -114,7 +114,7 @@ function fetchAll() {
                 usersTemplateHTML = usersTemplateHTML + '<li class="active" id="child_message" onclick="formMessageLauch('+users[i]['id']+',\''+users[i]['name']+'\',\'user\')" data-userid="'+users[i]['id']+'" data-type="user">'+
                 '<div class="d-flex bd-highlight">'+
                 '<div class="img_cont">'+
-                '<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">'+
+                '<img th:src="@{/img/lilo.jpg}" class="rounded-circle user_img">'+
                 '<span class="online_icon"></span>'+
                 '</div>'+
                 '<div class="user_info" id="userNameAppender_' + users[i]['id'] + '">'+
@@ -136,7 +136,7 @@ function fetchAll() {
             groupsTemplateHTML = groupsTemplateHTML + '<li class="active" id="child_message" onclick="formMessageLauch('+groups[i]['id']+',\''+groups[i]['group_name']+'\',\'group\')" data-groupid="'+groups[i]['id']+'" data-type="group">'+
                 '<div class="d-flex bd-highlight">'+
                 '<div class="img_cont">'+
-                '<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">'+
+                '<img th:src="@{/img/lilo.jpg}" class="rounded-circle user_img">'+
                 '<span class="online_icon"></span>'+
                 '</div>'+
                 '<div class="user_info" id="userGroupAppender_' + groups[i]['id'] + '">'+

@@ -6,6 +6,10 @@ import java.util.Optional;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +46,6 @@ public class UserDataServiceForRepository implements IUserDataAccess<UserEntity>
 	@Override
 	public int createUser(UserEntity newUser)
 	{
-		//UserEntity user = new UserEntity();
 		UserEntity result = userRepository.save(newUser);
         if (result == null)
         {
@@ -74,6 +77,17 @@ public class UserDataServiceForRepository implements IUserDataAccess<UserEntity>
 		List<UserEntity> users = (List<UserEntity>) userRepository.findAll();
 		return users;
 	}
+	
+	// FOR SORTING
+	public Page<UserEntity> findPaginated(final int pageNumber, final int pageSize,
+            final String sortField, final String sortDirection)
+	{
+		final Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+				Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+		final Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
+		return userRepository.findAll(pageable);
+		
+	}
 
 	@Override
 	public List<UserEntity> searchUsers(String searchTerm)
@@ -92,7 +106,6 @@ public class UserDataServiceForRepository implements IUserDataAccess<UserEntity>
 	@Override
 	public UserEntity getByID(int Id)
 	{
-		System.out.println(userRepository.findById((long) Id));
 		return userRepository.findById((long) Id).orElse(null);
 	}
 

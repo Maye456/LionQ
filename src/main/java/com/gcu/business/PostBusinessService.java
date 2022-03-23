@@ -85,8 +85,6 @@ public class PostBusinessService implements IPostBusinessService
 	@Override
 	public int addOne(PostModel newPost)
 	{
-		System.out.println("GET USER::: " + userService.getCurrentUser().getId());
-		
 		PostEntity entity = new PostEntity(
 				newPost.getPost_id(),
 				newPost.getTitle(),
@@ -107,6 +105,8 @@ public class PostBusinessService implements IPostBusinessService
 	@Override
 	public PostModel updateOne(long idToUpdate, PostModel updatePost)
 	{
+		System.out.println("POST ID:: " + idToUpdate);
+		
 		PostEntity entity = new PostEntity(
 				updatePost.getPost_id(),
 				updatePost.getTitle(),
@@ -117,11 +117,9 @@ public class PostBusinessService implements IPostBusinessService
                 );
 		entity.setUserid(userService.getCurrentUser().getId());
 		
-		System.out.println("=======entity========" + entity.getUserid());
-		
 		PostEntity result = service.updateOne(idToUpdate, entity);
-        
-        PostModel updated = new PostModel(
+		
+        PostModel updated = new PostModel( 
         		result.getPost_id(),
 				result.getTitle(),
 				result.getContent(),
@@ -130,7 +128,6 @@ public class PostBusinessService implements IPostBusinessService
 				result.getUserid()
                 );
         updated.setUser_id(userService.getCurrentUser().getId());
-        System.out.println("=======updated========" + updated.getUser_id());
         return updated;
 	}
 
@@ -150,7 +147,6 @@ public class PostBusinessService implements IPostBusinessService
 					entity.getTime_updated(),
 					entity.getUserid());
 			post.setUser(userService.getUser((int) post.getUser_id()));
-			System.out.println(post.getUser().getUsername());
 			posts.add(post);	
 		}
 		return posts;

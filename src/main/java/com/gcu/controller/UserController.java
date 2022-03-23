@@ -5,21 +5,23 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gcu.business.IPostBusinessService;
 import com.gcu.business.IUserBusinessService;
 import com.gcu.business.UserBusinessService;
 import com.gcu.data.UserDataServiceForRepository;
 import com.gcu.model.PostModel;
-import com.gcu.model.SearchPostModel;
 import com.gcu.model.SearchUserModel;
+import com.gcu.model.UserEntity;
 import com.gcu.model.UserModel;
 
 @Controller
@@ -43,13 +45,45 @@ public class UserController
 		this.userService = userService;
 	}
 	
-	// Admin Page for all Users
 	@GetMapping("/admin") 
 	public String showUsersForAdmin(Model model)
-	{  
+	{
 		List<UserModel> users = service.getUsers();
         model.addAttribute("title", "Admin Page");
         model.addAttribute("searchModel", new SearchUserModel());
+        model.addAttribute("users", users);
+        return "redirect:admin/1?sort-field=id&sort-dir=asc";
+	}
+	
+	// Admin Page for all Users
+	@GetMapping("/admin/{page-number}") 
+	public String showUsersForAdmin(@PathVariable(name = "page-number") final int pageNo,
+            @RequestParam(name = "sort-field") final String sortField,
+            @RequestParam(name = "sort-dir") final String sortDir,
+            final Model model)
+	{  
+//		List<UserModel> users = service.getUsers();
+//        model.addAttribute("title", "Admin Page");
+//        model.addAttribute("searchModel", new SearchUserModel());
+//        model.addAttribute("users", users);
+		
+		// Hardcoding the page-size to 15.
+        final int pageSize = 15;
+        final Page<UserEntity> page = userService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        final List<UserEntity> users = page.getContent();
+ 
+        // Creating the model response.
+        // Note for simplicity purpose we are not making the use of ResponseDto here.
+        // In ideal cases the response will be encapsulated in a class.
+        // pagination parameters
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        // sorting parameters
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        // employees
         model.addAttribute("users", users);
         return "userAdmin";
 	}
