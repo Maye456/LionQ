@@ -17,7 +17,7 @@ public class UserService
     public List<Map<String,Object>> fetchAll(String myId) 
     {
         List<Map<String,Object>> getAllUser = jdbcTemplate.queryForList(
-        		"SELECT * FROM user where id!=?", myId);
+        		"SELECT * FROM user where user_Id != ?", myId);
 
         return getAllUser;
     }

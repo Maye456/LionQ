@@ -19,4 +19,10 @@ public class RootController
     {
     	return "chat-app";
     }
+	
+	@GetMapping("/index2")
+    public String index2()
+    {
+    	return "index2";
+    }
 }

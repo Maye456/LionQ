@@ -24,8 +24,9 @@ public class MessageService
     // websocket personal chat to storing a message into database and send back to destination subscribe topic
     public void sendMessage(String to, MessageModel message) 
     {
-        jdbcTemplate.update("insert into messages (message_text,message_from,message_to,created_datetime) " +
-                "values (?,?,?,current_time )",message.getMessage(),message.getFromLogin(),to);
+        jdbcTemplate.update(
+        		"INSERT INTO messages (message_text, message_from, message_to, created_datetime) "
+        		+ "VALUES (?, ?, ?, current_time )", message.getMessage(), message.getFromLogin(), to);
 
         simpMessagingTemplate.convertAndSend("/topic/messages/" + to, message);
 
@@ -34,7 +35,8 @@ public class MessageService
     // Used in Rest Api to retrieve a list of messages from personal user to another user chat
     public List<Map<String,Object>> getListMessage(@PathVariable("from") Integer from, @PathVariable("to") Integer to)
     {
-        return jdbcTemplate.queryForList("select * from messages where (message_from=? and message_to=?) " +
-                "or (message_to=? and message_from=?) order by created_datetime asc",from,to,from,to);
+        return jdbcTemplate.queryForList(
+        		"SELECT * FROM messages WHERE (message_from = ? and message_to = ?) " +
+                "OR (message_to = ? and message_from = ?) ORDER BY created_datetime ASC", from, to, from, to);
     }
 }

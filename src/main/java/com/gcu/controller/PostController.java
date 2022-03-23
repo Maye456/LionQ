@@ -85,7 +85,16 @@ public class PostController
 	}
 	
 	// Process request for the delete post
-	@PostMapping("/delete")
+	@PostMapping("/deleteForm")
+	public String deletePostForm(@Valid PostModel postModel, BindingResult bindingResult, Model model)
+	{
+		// Display new order form
+		model.addAttribute("title", "Are You Sure You Want To Delete This Post?");
+		model.addAttribute("postModel", postModel);
+		return "postDelete";
+	}
+	
+	@PostMapping("/doDelete") 
 	public String deletePost(@Valid PostModel post, BindingResult bindingResult, Model model)
 	{
 		postService.deleteOne(post.getPost_id());
@@ -93,13 +102,12 @@ public class PostController
 		List<PostModel> posts = postService.getPosts();
 		
 		model.addAttribute("posts", posts);
-		model.addAttribute("searchModel", new SearchPostModel());
 		return "posts";
 	}
 	
-	@GetMapping("/editForm") 
+	@PostMapping("/editForm") 
 	public String displayEditForm(PostModel postModel, Model model)
-	{
+	{	
 		// Display new order form
 		model.addAttribute("title", "Edit Post");
 		model.addAttribute("postModel", postModel);
@@ -109,6 +117,8 @@ public class PostController
 	@PostMapping("/doUpdate") 
 	public String updatePost(@Valid PostModel post, BindingResult bindingResult, Model model)
 	{
+		System.out.println("CONTROLLER POST ID:: " + post.getPost_id());
+		
 		// Update post
 		postService.updateOne(post.getPost_id(), post);
 		

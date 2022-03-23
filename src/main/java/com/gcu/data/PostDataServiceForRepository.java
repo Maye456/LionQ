@@ -71,7 +71,7 @@ public class PostDataServiceForRepository implements IPostDataAccess<PostEntity>
 	@Override
 	public PostEntity updateOne(long idToUpdate, PostEntity updatePost)
 	{
-		System.out.println("=====PostDataServiceForRepository====== {" + updatePost.getUserid() + "}");
+		System.out.println("=====PostDataServiceForRepository POST ID:: {" + updatePost.getPost_id() + "}");
 		
 		PostEntity result = postRepository.save(updatePost);
 		return result;

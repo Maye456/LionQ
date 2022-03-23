@@ -28,7 +28,6 @@ public class LoginController
 		return "login";
 	}
 	
-//	@PostMapping("/doLogin")
 //	public String doLogin(@Valid UserModel login, BindingResult bindingResult, Model model)
 //	{
 //		// Check for validation errors

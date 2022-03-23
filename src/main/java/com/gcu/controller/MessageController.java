@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gcu.model.MessageModel;
 import com.gcu.service.MessageService;
-import com.gcu.service.UserService;
+import com.gcu.service.UserAndGroupService;
 
 @RestController
 @CrossOrigin
 public class MessageController
 {
 	@Autowired
-	UserService userService;
+	UserAndGroupService userService;
 	
     @Autowired
     MessageService messageService;
