@@ -45,7 +45,7 @@ public class UserController
 		this.userService = userService;
 	}
 	
-	@GetMapping("/admin") 
+	@GetMapping(value = "/admin") 
 	public String showUsersForAdmin(Model model)
 	{
 		List<UserModel> users = service.getUsers();
@@ -56,7 +56,7 @@ public class UserController
 	}
 	
 	// Admin Page for all Users
-	@GetMapping("/admin/{page-number}") 
+	@GetMapping(value = "/admin/{page-number}") 
 	public String showUsersForAdmin(@PathVariable(name = "page-number") final int pageNo,
             @RequestParam(name = "sort-field") final String sortField,
             @RequestParam(name = "sort-dir") final String sortDir,

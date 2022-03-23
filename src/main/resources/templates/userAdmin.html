@@ -103,20 +103,20 @@ ul.nav > li > a {
 	            </div>
 	            <div class="col-sm-1">
 	                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-	                        <a th:href="@{'/page/' + ${i} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
+	                        <a th:href="@{'/user/admin/' + ${i} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
 	                           th:if="${currentPage != i}">[[${i}]]</a>
 	                        <span th:unless="${currentPage != i}">[[${i}]]</span>
 	                    </span>
 	            </div>
 	            <div class="col-sm-1">
-	                <a th:href="@{'/page/' + ${currentPage + 1} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
+	                <a th:href="@{'/user/admin/' + ${currentPage + 1} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
 	                   th:if="${currentPage < totalPages}">
 	                    Next
 	                </a>
 	                <span th:unless="${currentPage < totalPages}">Next</span>
 	            </div>
 	            <div class="col-sm-1">
-	                <a th:href="@{'/page/' + ${totalPages} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
+	                <a th:href="@{'/user/admin/' + ${totalPages} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
 	                   th:if="${currentPage < totalPages}">
 	                    Last
 	                </a>
