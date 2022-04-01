@@ -115,4 +115,27 @@ public class UserDataServiceForRepository implements IUserDataAccess<UserEntity>
 		UserEntity result = userRepository.save(updateUser);
 		return result;
 	}
+	
+	public UserEntity findById(int user_id)
+	{
+        return userRepository.findById(user_id);
+    }
+
+    public UserEntity saveUser(UserEntity user)
+    {
+        user.setActive(1);
+        return userRepository.save(user);
+    }
+
+    public UserEntity updateUserActiveState(int user_id, long active) 
+    {
+    	UserEntity user = userRepository.findById((long) user_id).orElse(null);
+        user.setActive(active);
+        return userRepository.save(user);
+    }
+
+    public List<UserEntity> getActiveUserList()
+    {
+        return userRepository.findByActive(1);
+    }
 }
