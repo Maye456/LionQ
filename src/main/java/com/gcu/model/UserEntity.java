@@ -1,34 +1,48 @@
 package com.gcu.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import java.util.List;
 
-@Table("user")
+import javax.persistence.*;
+import lombok.*;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "user")
 public class UserEntity 
 {
 	@Id
-	@Column("user_Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_Id", updatable = false, nullable = false)
 	long id;
 	
-	@Column("FirstName")
+	@Column(name = "first_name")
 	String firstName;
 	
-	@Column("LastName")
+	@Column(name = "last_name")
 	String lastName;
 	
-	@Column("Email")
+	@Column(name = "Email")
 	String email;
 	
-	@Column("Username")
+	@Column(name = "Username")
 	String username;
 	
-	@Column("Password")
+	@Column(name = "Password")
 	String password;
 	
-	@Column("Role")
+	@Column(name = "Role")
 	String role;
 
+	@Column(name = "active")
+    private long active;
+	
+    @OneToMany
+    @JoinTable(name = "message", joinColumns = @JoinColumn(name = "user_Id"), inverseJoinColumns = @JoinColumn(name = "message_id"))
+    private List<Message> messages;
+    
 	public UserEntity(long id, String firstName, String lastName, String email, String username, String password, String role) {
 		this.id = id;
 		this.firstName = firstName;
@@ -95,5 +109,18 @@ public class UserEntity
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public long getActive() {
+		return active;
+	}
+	public void setActive(long active) {
+		this.active = active;
+	}
+	public List<Message> getMessages() {
+		return messages;
+	}
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 }
