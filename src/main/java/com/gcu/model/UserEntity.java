@@ -1,7 +1,6 @@
 package com.gcu.model;
 
 import java.util.List;
-
 import javax.persistence.*;
 import lombok.*;
 
@@ -53,12 +52,12 @@ public class UserEntity
 		this.role = role;
 	}
 	
-	public UserEntity() {}
+	// public UserEntity() {}
 	
 	public long getId() {
 		return id;
 	}
-
+ 
 	public void setId(long id) {
 		this.id = id;
 	}

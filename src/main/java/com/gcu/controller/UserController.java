@@ -45,6 +45,7 @@ public class UserController
 		this.userService = userService;
 	}
 	
+	// Display list of users
 	@GetMapping(value = "/admin") 
 	public String showUsersForAdmin(Model model)
 	{
@@ -62,32 +63,27 @@ public class UserController
             @RequestParam(name = "sort-dir") final String sortDir,
             final Model model)
 	{  
-//		List<UserModel> users = service.getUsers();
-//        model.addAttribute("title", "Admin Page");
-//        model.addAttribute("searchModel", new SearchUserModel());
-//        model.addAttribute("users", users);
 		
 		// Hardcoding the page-size to 15.
         final int pageSize = 15;
         final Page<UserEntity> page = userService.findPaginated(pageNo, pageSize, sortField, sortDir);
         final List<UserEntity> users = page.getContent();
- 
-        // Creating the model response.
-        // Note for simplicity purpose we are not making the use of ResponseDto here.
-        // In ideal cases the response will be encapsulated in a class.
-        // pagination parameters
+
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
+        
         // sorting parameters
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-        // employees
+        
+        // users
         model.addAttribute("users", users);
         return "userAdmin";
 	}
 	
+	// Displays search form for users
 	@GetMapping("/searchUserForm")
 	public String displaySearchForm(Model model)
 	{
@@ -97,6 +93,7 @@ public class UserController
 		return "userSearchForm";
 	}
 	
+	// Processes search results
 	@PostMapping("/searchResults")
 	public String showAllUsers(@Valid SearchUserModel searchModel, BindingResult bindingResult, Model model)
 	{

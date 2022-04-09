@@ -3,10 +3,18 @@ package com.gcu.model;
 import java.time.Instant;
 import java.util.Date;
 
+import javax.persistence.Entity;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
 @Table("post")
 public class PostEntity
 {
@@ -62,7 +70,7 @@ public class PostEntity
 		this.userid = userid;
 	}
 	
-	public PostEntity() {}
+	// public PostEntity() {}
 
 	public long getPost_id()
 	{

@@ -2,8 +2,10 @@ package com.gcu.data;
 
 import java.util.List;
 
-public interface IUserDataAccess<T> 
-{
+import org.springframework.stereotype.Service;
+
+public interface IUserDataAccess<T>
+{ 
 	public int createUser(T newUser);
 	public T findByUsername(String username);
 	public List<T> getUsers();
