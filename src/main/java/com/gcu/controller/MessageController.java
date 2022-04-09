@@ -36,16 +36,12 @@ public class MessageController {
     @Autowired
     private ServletContext servletContext;
 
+    // Displays Chat Login Page if user isn't logged in yet
     @RequestMapping(value = "/")
     public String index(HttpServletRequest request, Model model) 
     {
-    	// UserModel user = service2.getCurrentUser();
-    	
-        String userName = (String)request.getSession().getAttribute("username");
+    	String userName = (String)request.getSession().getAttribute("username");
         Long userId = (Long)request.getSession().getAttribute("user_Id");
-    	
-//    	String userName = user.getUsername();
-//        Long userId = user.getId();
 
         if (userName == null || userName.isEmpty() || userId == null) 
         {
@@ -58,16 +54,17 @@ public class MessageController {
         
         
         userService.updateUserActiveState(userId.intValue(), 1);
-        // userId = userService.updateUserActiveState(userId.intValue(), 1));
         return "chat";
     }
 
+    // Displays Chat Login Page
     @RequestMapping(path = "/chatLogin", method = RequestMethod.GET)
     public String showLoginPage() 
     {
         return "chatLogin";
     }
 
+    // Processes Chat Login
     @RequestMapping(path = "/doChatLogin", method = RequestMethod.POST)
     public String doLogin(HttpServletRequest request, @RequestParam(defaultValue = "") String username) 
     {
@@ -78,10 +75,6 @@ public class MessageController {
             return "chatLogin";
         }
 
-//        UserEntity user = new UserEntity();
-//        user.setUsername(username);
-//        user = userService.saveUser(user);
-//        
         UserModel user = service2.getCurrentUser();
         System.out.println(user.getUsername());
         
@@ -92,12 +85,11 @@ public class MessageController {
 	        
 	        return "redirect:/chat/";
         }
-//        request.getSession().setAttribute("user_Id", user.getId());
-//        request.getSession().setAttribute("username", user.getUsername());
         
         return "chatLogin";
     }
 
+    // Processes a User Logging Out
     @RequestMapping(path = "/logout")
     public String logout(HttpServletRequest request) 
     {
@@ -106,6 +98,7 @@ public class MessageController {
         return "redirect:/chat/chatLogin";
     }
 
+    // Displays Search in the Chat
     @RequestMapping(path = "/search", method = RequestMethod.GET)
     public String search(HttpServletRequest request, Model model) 
     {
@@ -125,6 +118,7 @@ public class MessageController {
         return "search";
     }
 
+    // Processes the search
     @RequestMapping(path = "/search", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public String doSearch(HttpServletRequest request, @RequestParam() Integer search_type,
@@ -154,6 +148,7 @@ public class MessageController {
         return null;
     }
 
+    // Gets the list of users logged into the chat
     @RequestMapping(value = "/getActiveUsers", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public String getActiveUsers(HttpServletRequest request, HttpServletResponse response) 
@@ -166,6 +161,7 @@ public class MessageController {
 
     }
 
+    // Gets the last messages from the chat
     @RequestMapping(value = "/getLastMessages", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public String getLastMessages(HttpServletRequest request, HttpServletResponse response) 

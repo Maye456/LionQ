@@ -23,6 +23,7 @@ public class PostController
 	@Autowired
 	IPostBusinessService postService;
 	
+	// Displays all the posts
 	@GetMapping("/all")
 	public String showAll(Model model)
 	{
@@ -33,6 +34,7 @@ public class PostController
 		return "posts";
 	}
 	
+	// Displays the Post Create Form
 	@GetMapping("/addNewForm")
 	public String displayAddNewForm(Model model)
 	{
@@ -66,6 +68,7 @@ public class PostController
 		return "postSearchForm";
 	}
 	
+	// Processes Search Results
 	@PostMapping("/searchResults")
 	public String showAllPosts(@Valid SearchPostModel searchModel, BindingResult bindingResult, Model model)
 	{
@@ -88,12 +91,12 @@ public class PostController
 	@PostMapping("/deleteForm")
 	public String deletePostForm(@Valid PostModel postModel, BindingResult bindingResult, Model model)
 	{
-		// Display new order form
 		model.addAttribute("title", "Are You Sure You Want To Delete This Post?");
 		model.addAttribute("postModel", postModel);
 		return "postDelete";
 	}
 	
+	// Processes the delete
 	@PostMapping("/doDelete") 
 	public String deletePost(@Valid PostModel post, BindingResult bindingResult, Model model)
 	{
@@ -105,15 +108,16 @@ public class PostController
 		return "posts";
 	}
 	
+	// Displays Edit Form
 	@PostMapping("/editForm") 
 	public String displayEditForm(PostModel postModel, Model model)
 	{	
-		// Display new order form
 		model.addAttribute("title", "Edit Post");
 		model.addAttribute("postModel", postModel);
 		return "postEdit";
 	}
 	
+	// Processes the Edit
 	@PostMapping("/doUpdate") 
 	public String updatePost(@Valid PostModel post, BindingResult bindingResult, Model model)
 	{
@@ -125,7 +129,7 @@ public class PostController
 		// get updated list of all the post
 		List<PostModel> posts = postService.getPosts();
 		
-		// display all orders
+		// display all posts
 		model.addAttribute("posts", posts); 
 		model.addAttribute("searchModel", new SearchPostModel()); 
 		return "posts";

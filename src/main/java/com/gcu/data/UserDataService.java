@@ -6,12 +6,10 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import com.gcu.model.UserModel;
-import com.gcu.model.PostMapper;
-import com.gcu.model.PostModel;
+
 import com.gcu.model.UserMapper;
+import com.gcu.model.UserModel;
 
 @Service
 public class UserDataService implements IUserDataAccess<UserModel>

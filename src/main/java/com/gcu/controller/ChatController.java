@@ -20,6 +20,7 @@ public class ChatController {
     @Autowired
     private UserDataServiceForRepository userService;
 
+    // Send a message 
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
@@ -34,6 +35,7 @@ public class ChatController {
         return chatMessage;
     }
 
+    // Adds a user to the user list
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,

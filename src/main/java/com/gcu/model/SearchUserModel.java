@@ -13,4 +13,5 @@ public class SearchUserModel
 	{
 		this.searchTerm2 = searchTerm2;
 	}
-}
+} 
+ 

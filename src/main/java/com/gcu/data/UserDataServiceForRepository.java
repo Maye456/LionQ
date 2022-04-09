@@ -19,7 +19,7 @@ import com.gcu.model.PostEntity;
 import com.gcu.model.UserEntity;
 import com.gcu.model.UserMapper;
 
-@Service
+@Service()
 public class UserDataServiceForRepository implements IUserDataAccess<UserEntity>
 {
 	@Autowired

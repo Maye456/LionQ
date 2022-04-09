@@ -14,3 +14,4 @@ public class SearchPostModel
 		this.searchTerm = searchTerm;
 	}
 }
+  

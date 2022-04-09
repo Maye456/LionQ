@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Service("messageService")
+@Service
 public class MessageService {
 
     private MessageRepository messageRepository;

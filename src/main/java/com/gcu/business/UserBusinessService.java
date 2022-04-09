@@ -52,11 +52,13 @@ public class UserBusinessService implements UserDetailsService
 		}
 	}
 	
+	// Gets the current user's name
 	public UserModel getCurrentUser()
 	{
 		return new UserModel(service.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
 	}
 	
+	// Gets a user by their ID
 	public UserModel getUser(int Id)
 	{
 		UserEntity result = service.getByID(Id);

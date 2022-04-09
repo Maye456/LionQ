@@ -1,16 +1,17 @@
 package com.gcu.model;
 
-public class ChatMessage {
+public class ChatMessage 
+{
     private MessageType type;
     private String content;
     private String sender;
     private int sender_id;
-
+ 
     public enum MessageType {
         CHAT,
         JOIN,
         LEAVE
-    }
+    } 
 
     public MessageType getType() {
         return type;
