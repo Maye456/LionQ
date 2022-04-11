@@ -52,7 +52,7 @@ public class UserEntity
 		this.role = role;
 	}
 	
-	// public UserEntity() {}
+	public UserEntity() {}
 	
 	public long getId() {
 		return id;
