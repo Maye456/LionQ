@@ -21,8 +21,14 @@ I chose Spring Boot because it made it easier to utilize the MVC Framework, beca
 
 ## Best Practices & DevOps Integration
 - I commented all the methods I used in the project as well as utilizing the MVC Framework in Spring Boot. I also created a JavaDoc for most of the methods.
-- This application is deployed on Microsoft Azure [here](https://lionqwebapp.azurewebsites.net/).
 - I implemented a logging feature to log when a user enters and exits each method. This will allow for developers to track when and where an error happened if it were to occur.
+
+## Cloud
+- Deployed a Spring Boot Application
+- Hosted on Microsoft Azure [here](https://lionqwebapp.azurewebsites.net/).
+- Web Servers: Apache
+- Web Stacks: Java 11, Apache Tomcat 8.5
+- Database: MySQL
 
 ## Challenges
 ### Solution to getting the user that's logged in
