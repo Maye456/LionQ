@@ -10,19 +10,19 @@
 ## Features
 
 
-## Portal Screenshots
+## WebApp Screenshots
 View the [JavaDoc](https://htmlpreview.github.io/?https://github.com/Maye456/LionQ/blob/main/doc/index.html).
 <table>
     <tr>
-        <td align="center"><b>Login</b><br/><img src=""/></td>
-        <td align="center"><b>Register</b><br/><img src=""/></td>
+        <td align="center"><b>Login</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/login.png"/></td>
+        <td align="center"><b>Register</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/register.png"/></td>
     </tr>
     <tr>
-        <td align="center"><b>Posts</b><br/><img src=""/></td>
-        <td align="center"><b>Admin</b><br/><img src=""/></td>
+        <td align="center"><b>Posts</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/posts.png"/></td>
+        <td align="center"><b>Admin</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/admin.png"/></td>
     </tr>
     <tr>
-        <td align="center"><b>Account Page</b><br/><img src=""/></td>
+        <td align="center"><b>Account Page</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/accountpage.png"/></td>
         <td align="center"><b>Chat Client</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/chat.png"/></td>
     </tr>
 </table>
