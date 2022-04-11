@@ -1,11 +1,43 @@
-# LionQ
+<table border="0px">
+        <td><img width="270" height="250" src="https://github.com/Maye456/LionQ/blob/main/src/main/resources/static/img/lionqlogo.png"/></td>
+        <td align="center"><h1>---- LionQ ----</h1></td>
+    </tr>
+</table>
 
-## Project Overview & Features
-- A social-media web application utilizing Spring Boot, Thymeleaf, & MySQL
-- Implementing basic CRUD operations for posts and users (EDIT/DELETE/LIST/SEARCH/CREATE)
-- Implementing a chat client with WebSocket Library
-- An account page which allows users to edit their profile and see the posts they created
+#### Introduction
 
+       
+## Features
+
+
+## Portal Screenshots
+View the [JavaDoc](https://htmlpreview.github.io/?https://github.com/Maye456/LionQ/blob/main/doc/index.html).
+<table>
+    <tr>
+        <td align="center"><b>Login</b><br/><img src=""/></td>
+        <td align="center"><b>Register</b><br/><img src=""/></td>
+    </tr>
+    <tr>
+        <td align="center"><b>Posts</b><br/><img src=""/></td>
+        <td align="center"><b>Admin</b><br/><img src=""/></td>
+    </tr>
+    <tr>
+        <td align="center"><b>Account Page</b><br/><img src=""/></td>
+        <td align="center"><b>Chat Client</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/chat.png"/></td>
+    </tr>
+</table>
+
+## Software
+
+## System Design
+<table>
+    <tr>
+        <td align="center"><b>Logical Diagram</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/LogicalDiagram.png"/></td>
+        <td align="center"><b>Physical Architecture</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/PhysicalDiagram.png"/></td>
+    </tr>
+</table>
+
+## Code Snippets
 ### WebSocket Dependency
 ```
 <dependency>
@@ -21,13 +53,5 @@ public UserModel getCurrentUser()
   return new UserModel(service.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
 }
 ```
-
-### Logical Solution Diagram
-![LogicalDiagram](https://user-images.githubusercontent.com/54680474/162790600-a3d39e31-a021-47b4-9de0-95c67b305050.png)
-
-
-### Physical Solution Diagram
-![PhysicalDiagram](https://user-images.githubusercontent.com/54680474/162790648-aa9c2c10-be09-4791-a8b7-0aa76ed8273a.png)
-
-### Chat Client Preview
-![chat](https://user-images.githubusercontent.com/54680474/162792065-b6285f58-f239-4716-ba43-3aa045cc4165.png)
+             
+[Back to Top](#introduction)
