@@ -41,7 +41,7 @@ public class PostBusinessService implements IPostBusinessService
 		List<PostEntity> postsE = service.getPosts();
 		// Create an empty list of posts
 		List<PostModel> posts = new ArrayList<PostModel>();
-		// For each entity in the list, create a new post and add to posts
+		// For each entity in the list, create a new order and add to orders
 		for (PostEntity entity: postsE)
 		{
 			// Translate from Entity to Post Model
@@ -76,7 +76,7 @@ public class PostBusinessService implements IPostBusinessService
 					entity.getTime_updated(),
 					entity.getUserid());
 			post.setUser(userService.getUser((int) post.getUser_id()));
-
+			
 			posts.add(post);	
 		}
 		return posts;

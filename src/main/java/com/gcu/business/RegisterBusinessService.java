@@ -43,7 +43,7 @@ public class RegisterBusinessService implements IUserBusinessService
 		for (UserEntity entity: usersE)
 		{
 			users.add(
-					// Translate from Entity to Post Model
+					// Translate from Entity to User Model
 					new UserModel(
 							entity.getId(),
 							entity.getFirstName(),
@@ -65,7 +65,7 @@ public class RegisterBusinessService implements IUserBusinessService
         for (UserEntity entity: usersE)
         {
         	users.add(
-                    // Translate from Entity to Order Model
+                    // Translate from Entity to User Model
                     new UserModel(
                     		entity.getId(),
 							entity.getFirstName(),
