@@ -1,6 +1,6 @@
 # LionQ
 
-##Project Overview & Features</h3>
+##Project Overview & Features
 - A web application with Spring Boot, Thymeleaf, & MySQL
 - Implementing basic CRUD operations for posts and users (EDIT/DELETE/LIST/SEARCH/CREATE)
 - Implementing a chat client with WebSocket Library
