@@ -5,7 +5,23 @@
 - Implementing basic CRUD operations for posts and users (EDIT/DELETE/LIST/SEARCH/CREATE)
 - Implementing a chat client with WebSocket Library
 - An account page which allows users to edit their profile and see the posts they created
-  
+
+### WebSocket Dependency
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-websocket</artifactId>
+</dependency>
+```
+
+### Solution to getting the user that's logged in
+```
+public UserModel getCurrentUser()
+{
+  return new UserModel(service.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
+}
+```
+
 ### Logical Solution Diagram
 ![LogicalDiagram](https://user-images.githubusercontent.com/54680474/162790600-a3d39e31-a021-47b4-9de0-95c67b305050.png)
 
