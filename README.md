@@ -1,4 +1,4 @@
-<table border="0px">
+<table>
         <td><img width="270" height="250" src="https://github.com/Maye456/LionQ/blob/main/src/main/resources/static/img/lionqlogo.png"/></td>
         <td align="center"><h1>---- LionQ ----</h1></td>
     </tr>
@@ -8,14 +8,49 @@
 - What problem was I solving & why was I solving this problem?
    - I was trying to figure out how websites are able to implement a chat feature into their application. I found that using WebSocket was a great way to implement the chat feature and Spring Boot includes the WebSocket library
    - I also wanted to create a social-media web application that is more friendly and in the future I want to redesign the application to gear more towards education and healthcare. To allow people to help one another in their field, and give advice and feedback to others. 
-- What are the high-level functional and non-functional requirements that I supported in the project?
-   - The chat feature was a high-level functional requirement and I was able to utitlize the websocket library to implement it into my project
-   - To monitor the 
-- What technologies did I choose and why? What industry best practices were supported in my design and implementation? Is my application deployed in the Cloud? How were DeevOps principles applied?
-- Did I learn any new technologies for this project? If so, what were they and why did I choose to learn these new technologies?
-- What technical approach did I take? Include design diagrams, class diagrams, etc.
-- What risks and challenges did I have? How did I overcome them and what resources did I use? What risk management approaches did I take?
-- What outstanding issues do I have?
+
+## Software
+- Spring Boot
+- Thymeleaf
+- WebSocket Library
+- MySQL v5.7.24
+- Java v11
+- Bootstrap
+
+I chose Spring Boot because it made it easier to utilize the MVC Framework, because it supports it and I chose Thymeleaf because it allowed me to create common layouts for the entire application such as a header, footer and common body. I used MySQL for the database because it is what I am more familiar with. For the Chat Client I did my research and WebSocket was the best route to take, because you can implement a chat feature with it, and it is include within Sprint Boot.
+
+## Best Practices & DevOps Integration
+- I commented all the methods I used in the project as well as utilizing the MVC Framework in Spring Boot. I also created a JavaDoc for most of the methods.
+- This application is deployed on Microsoft Azure [here](https://lionqwebapp.azurewebsites.net/).
+- I implemented a logging feature to log when a user enters and exits each method. This will allow for developers to track when and where an error happened if it were to occur.
+
+## Challenges
+### Solution to getting the user that's logged in
+```
+public UserModel getCurrentUser()
+{
+  return new UserModel(service.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
+}
+```
+- Creating a post and displaying the username and date
+   - Had troubles w/ Java & SQL dates
+   - Had to get the current user and get their id
+- Listing posts via UserID
+   - Had to get the current user and based off that get their posts and list it
+- Getting the layout I wanted with the Account Page
+- Chat Feature
+   - Learning how to utilize WebSocket
+### WebSocket Dependency
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-websocket</artifactId>
+</dependency>
+```
+
+## Risks/Issues
+- I had to do a lot of research and learn client-side JavaScript, as well as how to implement WebSocket into my application. 
+- No current issues at this time. :)
        
 ## Features
 - User-Friendly UI Design (easy to navigate)
@@ -29,13 +64,13 @@
 - Account page
    - Edit profile, See the posts you've created, and edit/delete those posts
 
-## Software
-- Spring Boot
-- Thymeleaf
-- WebSocket Library
-- MySQL v5.7.24
-- Java v11
-- Bootstrap
+## Application Monitoring
+<table>
+        <td><img width="100" height="100" src="https://github.com/Maye456/LionQ/blob/main/documents/Images/newrelic.png"/></td>
+        <td align="center"><h1>New Relic</h1></td>
+    </tr>
+</table>
+- To monitor the success of users being able to access the website, I am using NewRelic. With NewRelic, I could also monitor the ping of the application and the success rate of data inputs.
 
 ## Technical Approach
 <table>
@@ -61,22 +96,5 @@ View the [JavaDoc](https://htmlpreview.github.io/?https://github.com/Maye456/Lio
         <td align="center"><b>Chat Client</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/chat.png"/></td>
     </tr>
 </table>
-
-## Code Snippets
-### WebSocket Dependency
-```
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-websocket</artifactId>
-</dependency>
-```
-
-### Solution to getting the user that's logged in
-```
-public UserModel getCurrentUser()
-{
-  return new UserModel(service.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
-}
-```
              
 [Back to Top](#introduction)
