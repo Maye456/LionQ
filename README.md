@@ -76,7 +76,11 @@ public UserModel getCurrentUser()
 <table>
     <tr>
         <td align="center"><b>Logical Diagram</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/LogicalDiagram.png"/></td>
+        <td align="center"><p>Java Spring Boot provides many libraries such as web development, thymeleaf, and more. We will manually add the websocket, sockjs, and stomp client dependencies into the application. It also provides an MVC (Model-View-Controller) framework that helps tremendously when building this application. We are able to divide the work of the application and the developed code will be easier to read for other developers that will be doing the project. There will also be a database that will be provided by MySQL to store data that is being registered or requested from the user.</p></td>
+    </tr>
+    <tr>
         <td align="center"><b>Physical Architecture</b><br/><img src="https://github.com/Maye456/LionQ/blob/main/documents/Images/PhysicalDiagram.png"/></td>
+        <td align="center"><p>The Azure Cloud Services will be able to store the data and have the application running through the Azure Spring Cloud Service. The Azure Spring Cloud service provides an easier way for the Spring Boot application to be installed. The user will be able to request data, which happens at the front-end of the application, using Thymeleaf for the design, and it then goes to the back-end of the application where the Spring MVC framework lies. From the Spring MVC framework, it will request data from the MySQL database, and it will respond to the back-end and then to the front-end, where the data will be outputted with the results or an error page. New Relic is what will monitor the front-end of the application, and the application itself will all be going into the Azure Cloud.</p></td>
     </tr>
 </table>
 
