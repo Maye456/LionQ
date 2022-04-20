@@ -10,12 +10,12 @@
    - I also wanted to create a social-media web application that is more friendly and in the future I want to redesign the application to gear more towards education and healthcare. To allow people to help one another in their field, and give advice and feedback to others. 
 
 ## Software
-- Spring Boot
-- Thymeleaf
+- Spring Boot v4.13
+- Thymeleaf 
 - WebSocket Library
 - MySQL v5.7.24
 - Java v11
-- Bootstrap
+- Bootstrap v4
 
 I chose Spring Boot because it made it easier to utilize the MVC Framework, because it supports it and I chose Thymeleaf because it allowed me to create common layouts for the entire application such as a header, footer and common body. I used MySQL for the database because it is what I am more familiar with. For the Chat Client I did my research and WebSocket was the best route to take, because you can implement a chat feature with it, and it is include within Sprint Boot.
 
