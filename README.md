@@ -10,9 +10,9 @@
    - I also wanted to create a social-media web application that is more friendly and in the future I want to redesign the application to gear more towards education and healthcare. To allow people to help one another in their field, and give advice and feedback to others. 
 
 ## Software
-- Spring Boot v4.13
-- Thymeleaf 
-- WebSocket Library
+- Spring v2.6.1
+- Thymeleaf v2.6.1
+- Spring Boot WebSocket v2.6.1
 - MySQL v5.7.24
 - Java v11
 - Bootstrap v4
