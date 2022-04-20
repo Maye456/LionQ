@@ -78,6 +78,9 @@ public UserModel getCurrentUser()
 </table>
 - To monitor the success of users being able to access the website, I am using NewRelic. With NewRelic, I could also monitor the ping of the application and the success rate of data inputs.
 
+## Documentation (Project Proposal, Project Designs, etc.)
+- Project Proposal [here](https://github.com/Maye456/LionQ/blob/main/documents/Project%20Proposal.docx).
+
 ## Technical Approach
 <table>
     <tr>
