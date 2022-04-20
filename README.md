@@ -80,6 +80,11 @@ public UserModel getCurrentUser()
 
 ## Documentation (Project Proposal, Project Designs, etc.)
 - Project Proposal [here](https://github.com/Maye456/LionQ/blob/main/documents/Project%20Proposal.docx).
+- Project Requirements [here](https://github.com/Maye456/LionQ/blob/main/documents/Project%20Requirements.docx).
+- Project Design [here](https://github.com/Maye456/LionQ/blob/main/documents/Project%20Design.docx).
+- Functional Requirements [here](https://github.com/Maye456/LionQ/blob/main/documents/Functional%20Requirements.xlsx).
+- Test Cases [here](https://github.com/Maye456/LionQ/blob/main/documents/Test%20Cases.xlsx).
+- Traceability Matrix [here](https://github.com/Maye456/LionQ/blob/main/documents/Traceability%20Matrix.xlsx).
 
 ## Technical Approach
 <table>
